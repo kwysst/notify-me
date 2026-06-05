@@ -1,0 +1,42 @@
+{
+  "v": 1,
+  "alg": "AES-GCM",
+  "kdf": "PBKDF2-SHA256",
+  "iterations": 300000,
+  "salt": "55c/k4MAsCnA9ScHJGbnxA==",
+  "iv": "ndsCCKpEIle+bcQn",
+  "ciphertext": "FzNRK6eF5hzq+wPYNi2kaxbryjK2xGTPMXVATGbFM94WtjbmXj2JiPox2yloqB+bf/EnKK5sZfzkpCIxGArvtl4/9CyjJyBue9X9wRm7LEq531H18MO6FKNMYveDgMnKX3TheWBZQ76NTeb12ePUXoiAlqZwTWiurT28sV7LexSvY+DifCKGCPpswZotm+StceTER1tGy3fxySXdhLGHvQTLV+zpmhoAxIgpmB+FcMb15RDCs7lWCldorYFjLPiI2+Nfl/NcyYTa2xcA4qZ6ULJG5nNIsvZovw0jsB0A4PO7/x+eSH6T6iAhhA==",
+  "schema": {
+    "type": "encrypted_data",
+    "version": "1.0",
+    "fields": {
+      "buttons": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 20,
+        "itemSchema": {
+          "type": "object",
+          "fields": {
+            "text": {
+              "type": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 50,
+              "label": "Текст кнопки",
+              "placeholder": "Например: Помощь"
+            },
+            "message": {
+              "type": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 500,
+              "label": "Текст уведомления",
+              "placeholder": "Что отправить в Telegram"
+            }
+          }
+        }
+      }
+    }
+  }
+}

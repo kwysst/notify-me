@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Уведомления | Безопасная панель</title>
+    <link rel="icon" href="src/index.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <main class="page">
+        <div id="loginSection">
+            <div class="card">
+                <div class="header">
+                    <h1 class="title">Вход</h1>
+                    <a href="enc-generator.html" class="header-btn" title="Генератор конфигов">
+                        <img src="src/settings.svg" alt="settings">
+                    </a>
+                </div>
+                
+                <form id="loginForm">
+                    <input 
+                        type="password" 
+                        id="passphrase" 
+                        class="input" 
+                        placeholder="Pass-фраза" 
+                        required 
+                        autofocus
+                    >
+                    <button type="submit" class="button">Войти</button>
+                </form>
+                
+                <div id="loginError" class="error-message" style="display:none;"></div>
+            </div>
+        </div>
+
+        <div id="appSection" style="display:none;">
+            <div class="card">
+                <div class="header">
+                    <h1 class="title">Уведомления</h1>
+                    <button id="logoutBtn" class="header-btn" title="Выйти">
+                        <img src="src/logout.svg" alt="logout">
+                    </button>
+                </div>
+                
+                <div id="buttonsGrid" class="buttons-grid"></div>
+                <div id="notificationArea" class="notification-area"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/enc-core.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

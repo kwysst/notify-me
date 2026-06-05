@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Генератор конфигураций</title>
+    <link rel="icon" href="src/encrypt.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/enc.css">
+</head>
+<body>
+    <main class="page">
+        <div class="card">
+            <div class="header">
+                <h1 class="title">Генератор .enc</h1>
+                <a href="index.html" class="header-btn" title="На главную">
+                    <img src="src/arrow-left.svg" alt="back">
+                </a>
+            </div>
+            
+            <form id="generatorForm">
+                <input 
+                    type="password" 
+                    id="generatorPassphrase" 
+                    class="input" 
+                    placeholder="Pass-фраза (мин. 4 символа)" 
+                    required
+                >
+                
+                <textarea 
+                    id="generatorConfigJson" 
+                    class="textarea"
+                ></textarea>
+                
+                <button type="button" id="generatorLoadExampleBtn" class="button button-secondary">Загрузить пример</button>
+                <button type="button" id="generatorGenerateBtn" class="button">Создать .enc файл</button>
+            </form>
+            
+            <div id="generatorStatus" style="display:none;"></div>
+        </div>
+    </main>
+
+    <script src="scripts/enc-core.js"></script>
+    <script src="templates/schema.js"></script>
+    <script src="scripts/enc-generator.js"></script>
+</body>
+</html>
