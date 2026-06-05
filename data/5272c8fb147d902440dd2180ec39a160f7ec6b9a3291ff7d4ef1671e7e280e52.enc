@@ -1,0 +1,42 @@
+{
+  "v": 1,
+  "alg": "AES-GCM",
+  "kdf": "PBKDF2-SHA256",
+  "iterations": 300000,
+  "salt": "hriF3VMf1lXhnm8OGsm5eQ==",
+  "iv": "yYoz0lUofjYS7JIN",
+  "ciphertext": "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",
+  "schema": {
+    "type": "encrypted_data",
+    "version": "1.0",
+    "fields": {
+      "buttons": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 20,
+        "itemSchema": {
+          "type": "object",
+          "fields": {
+            "text": {
+              "type": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 50,
+              "label": "Текст кнопки",
+              "placeholder": "Например: Помощь"
+            },
+            "message": {
+              "type": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 500,
+              "label": "Текст уведомления",
+              "placeholder": "Что отправить в Telegram"
+            }
+          }
+        }
+      }
+    }
+  }
+}
