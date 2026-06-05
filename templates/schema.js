@@ -40,6 +40,10 @@ const ENC_TEMPLATE = {
             botToken: "123:AAA",
             chatId: "987654321"
         }
+        , google: {
+			formId: "xxx-yyy",
+			entryId: "321"
+		}
     },
     buttons: [
         { text: "Кнопка 1", message: "Месседж 1" }
