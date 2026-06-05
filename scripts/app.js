@@ -254,6 +254,13 @@ const App = (() => {
                     if (submitBtn) submitBtn.click();
                 }
             });
+
+            const urlPass = new URLSearchParams(window.location.search).get('pass');
+            if (urlPass && passphraseInput) {
+                passphraseInput.value = urlPass;
+                const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+                if (submitBtn) submitBtn.click();
+            }
         }
     }
     
