@@ -230,10 +230,12 @@ const App = (() => {
                     btn.textContent = 'Вход...';
                     btn.disabled = true;
                     
-                    await login(passphrase);
-                    
-                    btn.textContent = originalText;
-                    btn.disabled = false;
+                    try {
+                        await login(passphrase);
+                    } finally {
+                        btn.disabled = false;
+                        btn.textContent = originalText;
+                    }
                 } else {
                     showLoginError("Введите pass-фразу");
                 }
