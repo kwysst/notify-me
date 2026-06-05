@@ -230,15 +230,32 @@ body {
     }
 }
 
+.success-message,
+.error-message,
+.info-message {
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 16px;
+    font-size: 14px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.success-message {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #065f46;
+}
+
 .error-message {
     background: rgba(239, 68, 68, 0.12);
     border: 1px solid rgba(239, 68, 68, 0.2);
     color: #991b1b;
-    padding: 12px;
-    border-radius: 12px;
-    margin-top: 16px;
-    text-align: center;
-    font-size: 14px;
+}
+
+.info-message {
+    background: rgba(79, 124, 255, 0.12);
+    border: 1px solid rgba(79, 124, 255, 0.2);
+    color: #1e40af;
 }
 
 @media (max-width: 640px) {
