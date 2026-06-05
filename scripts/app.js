@@ -1,6 +1,24 @@
 const App = (() => {
     let currentConfig = null;
     
+    function showStatus(message, type, targetId = 'notificationArea', timeout = null) {
+        const container = document.getElementById(targetId);
+        if (!container) return;
+        
+        const statusDiv = document.createElement('div');
+        statusDiv.className = `${type}-message`;
+        statusDiv.textContent = message;
+        
+        container.innerHTML = '';
+        container.appendChild(statusDiv);
+        
+        timeout && setTimeout(() => {
+            if (container.firstChild === statusDiv) {
+                container.innerHTML = '';
+            }
+        });
+    }
+    
     async function sendTelegramNotification(botToken, chatId, message) {
         const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
@@ -39,7 +57,10 @@ const App = (() => {
         buttonsGrid.innerHTML = "";
         
         if (!config.buttons || !Array.isArray(config.buttons) || config.buttons.length === 0) {
-            buttonsGrid.innerHTML = "<p style='color: var(--muted); text-align: center;'>Кнопки не найдены</p>";
+            const emptyMsg = document.createElement('p');
+            emptyMsg.style.cssText = 'color: var(--muted); text-align: center;';
+            emptyMsg.textContent = 'Кнопки не найдены';
+            buttonsGrid.appendChild(emptyMsg);
             return;
         }
         
@@ -55,39 +76,37 @@ const App = (() => {
     }
     
     async function handleButtonClick(button, config) {
-        const notificationArea = document.getElementById("notificationArea");
         const message = button.message || `Нажата кнопка: ${button.text}`;
         
-        if (!notificationArea) return;
-        
-        notificationArea.innerHTML = '<div class="notification-info">Отправка...</div>';
+        showStatus('Отправка...', 'info');
         
         if (config.notifications && config.notifications.telegram) {
             const tg = config.notifications.telegram;
             if (tg.botToken && tg.chatId) {
                 const result = await sendTelegramNotification(tg.botToken, tg.chatId, message);
                 if (result.success) {
-                    notificationArea.innerHTML = `<div class="notification-success">${result.message}</div>`;
+                    showStatus(result.message, 'success');
                 } else {
-                    notificationArea.innerHTML = `<div class="notification-error">Ошибка: ${result.message}</div>`;
+                    showStatus(`Ошибка: ${result.message}`, 'error');
                 }
             } else {
-                notificationArea.innerHTML = '<div class="notification-error">Telegram не настроен</div>';
+                showStatus('Telegram не настроен', 'error');
             }
         } else {
-            notificationArea.innerHTML = '<div class="notification-error">Telegram не настроен</div>';
+            showStatus('Telegram не настроен', 'error');
         }
+    }
+    
+    function showLoginError(message) {
+        const errorDiv = document.getElementById("loginError");
+        if (!errorDiv) return;
+        
+        errorDiv.textContent = message;
+        errorDiv.style.display = "block";
         
         setTimeout(() => {
-            if (notificationArea.children.length > 0) {
-                setTimeout(() => {
-                    if (notificationArea.firstChild?.classList?.contains('notification-success') ||
-                        notificationArea.firstChild?.classList?.contains('notification-error')) {
-                        notificationArea.innerHTML = "";
-                    }
-                }, 3000);
-            }
-        }, 5000);
+            errorDiv.style.display = "none";
+        }, 3000);
     }
     
     async function login(passphrase) {
@@ -106,27 +125,11 @@ const App = (() => {
             
             renderButtons(config);
             
-            const notificationArea = document.getElementById("notificationArea");
-            if (notificationArea) {
-                notificationArea.innerHTML = '<div class="notification-success">Вход выполнен</div>';
-                setTimeout(() => {
-                    if (notificationArea.firstChild) {
-                        notificationArea.innerHTML = "";
-                    }
-                }, 2000);
-            }
+            showStatus('Вход выполнен', 'success');
             
         } catch (error) {
             console.error("Login error:", error);
-            const errorDiv = document.getElementById("loginError");
-            if (errorDiv) {
-                errorDiv.textContent = error.message;
-                errorDiv.style.display = "block";
-                
-                setTimeout(() => {
-                    errorDiv.style.display = "none";
-                }, 3000);
-            }
+            showLoginError(error.message);
             throw error;
         }
     }
@@ -166,14 +169,7 @@ const App = (() => {
                     btn.textContent = originalText;
                     btn.disabled = false;
                 } else {
-                    const errorDiv = document.getElementById("loginError");
-                    if (errorDiv) {
-                        errorDiv.textContent = "Введите pass-фразу";
-                        errorDiv.style.display = "block";
-                        setTimeout(() => {
-                            errorDiv.style.display = "none";
-                        }, 2000);
-                    }
+                    showLoginError("Введите pass-фразу");
                 }
             });
         }
