@@ -1,0 +1,3 @@
+[submodule "enc-module"]
+	path = enc-module
+	url = https://github.com/kwysst/enc.git
