@@ -54,6 +54,4 @@ const ENC_TEMPLATE = {
 const ENC_PLACEHOLDER = JSON.stringify(ENC_TEMPLATE, null, 4);
 
 // Экспорт для использования
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { ENC_SCHEMA, ENC_TEMPLATE, ENC_PLACEHOLDER };
-}
+export { ENC_SCHEMA, ENC_TEMPLATE, ENC_PLACEHOLDER };

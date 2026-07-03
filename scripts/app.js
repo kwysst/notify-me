@@ -1,7 +1,6 @@
-// app.js - логика уведомлений
+import { toast } from '/web-utils/utils-scripts/components/Toast/Toast.js';
+
 (function() {
-    let encAuth = null;
-    
     function showStatus(message, type) {
         const container = document.getElementById('encNotificationArea');
         if (!container) return;
@@ -120,7 +119,7 @@
     }
     
     // Инициализация
-    encAuth = new EncAuth({
+    new EncAuth({
         containerId: 'encApp',
         dataPath: 'data/',
         title: 'Уведомления',

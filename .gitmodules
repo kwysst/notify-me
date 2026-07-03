@@ -1,3 +1,6 @@
 [submodule "enc-module"]
 	path = enc-module
 	url = https://github.com/kwysst/enc.git
+[submodule "web-utils"]
+	path = web-utils
+	url = git@github.com:kwysst/web-utils.git
